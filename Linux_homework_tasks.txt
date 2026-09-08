@@ -1,0 +1,208 @@
+# Linux Homework
+
+## Task 1: Soft Link & Hard Link
+
+### Soft Link
+
+<!--
+harsha@pop-os:~$ touch test.txt
+harsha@pop-os:~$ ln -s test.txt soft.txt
+harsha@pop-os:~$ ls -l
+lrwxrwxrwx 1 harsha harsha 8 Sep 8 20:10 soft.txt -> test.txt
+-rw-r--r-- 1 harsha harsha 0 Sep 8 20:10 test.txt
+harsha@pop-os:~$
+-->
+
+### Hard Link
+
+<!--
+harsha@pop-os:~$ ln test.txt hard.txt
+harsha@pop-os:~$ ls -li
+123456 -rw-r--r-- 2 harsha harsha 0 Sep 8 20:10 hard.txt
+123456 -rw-r--r-- 2 harsha harsha 0 Sep 8 20:10 test.txt
+harsha@pop-os:~$
+-->
+
+### Delete Soft Link and Hard Link
+
+<!--
+harsha@pop-os:~$ rm soft.txt
+harsha@pop-os:~$ rm hard.txt
+harsha@pop-os:~$
+-->
+
+---
+
+## Task 2: adduser vs useradd
+
+### Check adduser
+
+<!--
+harsha@pop-os:~$ adduser --help
+Usage: adduser [options] LOGIN
+harsha@pop-os:~$
+-->
+
+### Check useradd
+
+<!--
+harsha@pop-os:~$ useradd --help
+Usage: useradd [options] LOGIN
+harsha@pop-os:~$
+-->
+
+### Create User Using adduser
+
+<!--
+harsha@pop-os:~$ sudo adduser testuser
+[sudo] password for harsha:
+Adding user `testuser' ...
+Adding new user `testuser' ...
+Creating home directory `/home/testuser' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Is the information correct? [Y/n] y
+harsha@pop-os:~$
+-->
+
+### Check Created User
+
+<!--
+harsha@pop-os:~$ id testuser
+uid=1001(testuser) gid=1001(testuser) groups=1001(testuser)
+harsha@pop-os:~$
+-->
+
+---
+
+## Task 3: journalctl
+
+### View System Logs
+
+<!--
+harsha@pop-os:~$ journalctl
+...
+harsha@pop-os:~$
+-->
+
+### View Recent Logs
+
+<!--
+harsha@pop-os:~$ journalctl -n 20
+...
+harsha@pop-os:~$
+-->
+
+### Follow Logs in Real Time
+
+<!--
+harsha@pop-os:~$ journalctl -f
+...
+^C
+harsha@pop-os:~$
+-->
+
+### Check Logs for a Specific Service
+
+<!--
+harsha@pop-os:~$ journalctl -u systemd-logind
+...
+harsha@pop-os:~$
+-->
+
+### View Logs From the Current Boot
+
+<!--
+harsha@pop-os:~$ journalctl -b
+...
+harsha@pop-os:~$
+-->
+
+---
+
+## Task 4: Linux Command Cheat Sheet
+
+### File and Directory Commands
+
+<!--
+harsha@pop-os:~$ pwd
+/home/harsha
+harsha@pop-os:~$ ls
+Desktop Documents Downloads Music Pictures Public Templates Videos
+harsha@pop-os:~$ mkdir linux-test
+harsha@pop-os:~$ cd linux-test
+harsha@pop-os:~/linux-test$ touch test.txt
+harsha@pop-os:~/linux-test$ ls
+test.txt
+harsha@pop-os:~/linux-test$
+-->
+
+### Copy and Move
+
+<!--
+harsha@pop-os:~/linux-test$ cp test.txt copy.txt
+harsha@pop-os:~/linux-test$ mv copy.txt renamed.txt
+harsha@pop-os:~/linux-test$ ls
+renamed.txt test.txt
+harsha@pop-os:~/linux-test$
+-->
+
+### Display File Contents
+
+<!--
+harsha@pop-os:~/linux-test$ echo "Hello Linux" > test.txt
+harsha@pop-os:~/linux-test$ cat test.txt
+Hello Linux
+harsha@pop-os:~/linux-test$
+-->
+
+### Search Using grep
+
+<!--
+harsha@pop-os:~/linux-test$ grep "Linux" test.txt
+Hello Linux
+harsha@pop-os:~/linux-test$
+-->
+
+### Find Files
+
+<!--
+harsha@pop-os:~/linux-test$ find . -name "test.txt"
+./test.txt
+harsha@pop-os:~/linux-test$
+-->
+
+### File Permissions
+
+<!--
+harsha@pop-os:~/linux-test$ ls -l test.txt
+-rw-r--r-- 1 harsha harsha 12 Sep 8 20:30 test.txt
+harsha@pop-os:~/linux-test$ chmod 755 test.txt
+harsha@pop-os:~/linux-test$ ls -l test.txt
+-rwxr-xr-x 1 harsha harsha 12 Sep 8 20:30 test.txt
+harsha@pop-os:~/linux-test$
+-->
+
+### Process Commands
+
+<!--
+harsha@pop-os:~$ ps
+PID TTY          TIME CMD
+2451 pts/0    00:00:00 bash
+3124 pts/0    00:00:00 ps
+harsha@pop-os:~$ top
+...
+harsha@pop-os:~$
+-->
+
+### Disk Usage
+
+<!--
+harsha@pop-os:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p3  100G   35G   65G  35% /
+harsha@pop-os:~$ du -sh .
+4.0K    .
+harsha@pop-os:~$
+-->
