@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stable
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: canary-demo
+      version: stable
+  template:
+    metadata:
+      labels:
+        app: canary-demo
+        version: stable
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: canary-demo
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: canary-demo
+        version: canary
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.28
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary-service
+spec:
+  selector:
+    app: canary-demo
+  ports:
+    - port: 80
+      targetPort: 80
