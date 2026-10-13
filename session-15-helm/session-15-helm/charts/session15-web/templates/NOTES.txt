@@ -1,0 +1,11 @@
+The application has been deployed.
+
+Check Pods:
+  kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }}
+
+Check Service:
+  kubectl get svc {{ include "session15-web.fullname" . }}
+
+Access locally:
+  kubectl port-forward svc/{{ include "session15-web.fullname" . }} 18084:{{ .Values.service.port }}
+  Then open http://127.0.0.1:18084/

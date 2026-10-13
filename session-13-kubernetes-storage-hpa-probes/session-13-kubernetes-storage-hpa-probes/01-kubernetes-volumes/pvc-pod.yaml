@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pvc-demo
+spec:
+  containers:
+    - name: writer
+      image: busybox:1.36
+      command: ["sh", "-c", "echo 'Data stored on a PVC' > /persistent/message.txt; sleep 3600"]
+      volumeMounts:
+        - name: persistent-data
+          mountPath: /persistent
+  volumes:
+    - name: persistent-data
+      persistentVolumeClaim:
+        claimName: session13-pvc

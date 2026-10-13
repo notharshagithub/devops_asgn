@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: session14-mini-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: session14-mini-web
+  template:
+    metadata:
+      labels:
+        app: session14-mini-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        volumeMounts:
+        - name: web-content
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+          readOnly: true
+        resources:
+          requests:
+            cpu: 50m
+            memory: 32Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
+      volumes:
+      - name: web-content
+        configMap:
+          name: session14-web-content

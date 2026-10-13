@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: session14-mini-service
+spec:
+  type: ClusterIP
+  selector:
+    app: session14-mini-web
+  ports:
+  - port: 80
+    targetPort: 80

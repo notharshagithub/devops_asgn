@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  APP_NAME: session12-demo
+  APP_ENV: development
+  LOG_LEVEL: debug
+  settings.conf: |
+    app_mode=development
+    retry_count=3
+    feature_flag=true

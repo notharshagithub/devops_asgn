@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: session14-web-content
+data:
+  index.html: |
+    <!doctype html>
+    <html><head><title>Session 14</title></head>
+    <body>
+      <h1>Session 14 Kubernetes Troubleshooting Mini Project</h1>
+      <p>Nginx runs behind a Kubernetes Service.</p>
+      <p>Readiness and liveness probes monitor HTTP responses.</p>
+    </body></html>

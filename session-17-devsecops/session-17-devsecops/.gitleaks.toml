@@ -1,0 +1,7 @@
+title = "Session 17 DevSecOps demo"
+
+[extend]
+useDefault = true
+
+# This repository deliberately contains no demo credentials.
+# Add narrowly-scoped allowlists only for verified false positives.

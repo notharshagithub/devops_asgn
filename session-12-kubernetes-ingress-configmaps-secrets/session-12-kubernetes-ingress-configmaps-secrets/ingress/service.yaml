@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-demo-service
+spec:
+  type: ClusterIP
+  selector:
+    app: ingress-demo
+  ports:
+    - port: 80
+      targetPort: 80

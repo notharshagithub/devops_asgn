@@ -1,0 +1,3 @@
+# Screenshots are expected to be committed; avoid secrets and local temp files.
+.env
+*.secret.local.yaml

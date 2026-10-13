@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: storage-web-content
+data:
+  index.html: |
+    <!doctype html>
+    <html>
+      <head><title>Session 13 Storage Project</title></head>
+      <body>
+        <h1>Kubernetes Storage Mini Project</h1>
+        <p>This page is initialized from a ConfigMap and served from a PersistentVolumeClaim.</p>
+        <p>Readiness and liveness probes check the web server.</p>
+      </body>
+    </html>

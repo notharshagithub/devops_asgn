@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "session15-web.fullname" . }}-page
+  labels:
+    {{- include "session15-web.labels" . | nindent 4 }}
+data:
+  index.html: |
+    <!doctype html>
+    <html>
+      <head><title>Session 15 Helm Demo</title></head>
+      <body>
+        <h1>Helm-managed Kubernetes application</h1>
+        <p>Release version: {{ .Values.page.version }}</p>
+        <p>{{ .Values.page.message }}</p>
+      </body>
+    </html>

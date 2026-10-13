@@ -1,0 +1,4 @@
+# Never commit local credentials or environment files
+secret.local.yaml
+*.secret.local.yaml
+.env
